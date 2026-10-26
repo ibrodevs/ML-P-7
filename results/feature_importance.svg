@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="420" viewBox="0 0 820 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="410" y="30" text-anchor="middle" font-family="Arial" font-size="22">Random Forest feature importance</text>
+<text x="168" y="80" text-anchor="end" font-family="Arial" font-size="16">income</text>
+<rect x="180" y="55" width="540.0" height="38" fill="#4C78A8"/>
+<text x="728.0" y="80" font-family="Arial" font-size="14">0.2686</text>
+<text x="168" y="136" text-anchor="end" font-family="Arial" font-size="16">tenure_months</text>
+<rect x="180" y="111" width="440.2" height="38" fill="#4C78A8"/>
+<text x="628.2" y="136" font-family="Arial" font-size="14">0.2189</text>
+<text x="168" y="192" text-anchor="end" font-family="Arial" font-size="16">activity_score</text>
+<rect x="180" y="167" width="287.8" height="38" fill="#4C78A8"/>
+<text x="475.8" y="192" font-family="Arial" font-size="14">0.1431</text>
+<text x="168" y="248" text-anchor="end" font-family="Arial" font-size="16">debt_ratio</text>
+<rect x="180" y="223" width="282.0" height="38" fill="#4C78A8"/>
+<text x="470.0" y="248" font-family="Arial" font-size="14">0.1403</text>
+<text x="168" y="304" text-anchor="end" font-family="Arial" font-size="16">support_calls</text>
+<rect x="180" y="279" width="246.4" height="38" fill="#4C78A8"/>
+<text x="434.4" y="304" font-family="Arial" font-size="14">0.1226</text>
+<text x="168" y="360" text-anchor="end" font-family="Arial" font-size="16">age</text>
+<rect x="180" y="335" width="214.1" height="38" fill="#4C78A8"/>
+<text x="402.1" y="360" font-family="Arial" font-size="14">0.1065</text>
+</svg>
