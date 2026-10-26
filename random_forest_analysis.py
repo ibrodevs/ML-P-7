@@ -64,6 +64,36 @@ def save_importance_plot(importances: pd.DataFrame, output_path: Path) -> None:
     plt.close()
 
 
+def save_importance_svg(importances: pd.DataFrame, output_path: Path) -> None:
+    """Save a compact, dependency-free SVG copy of the importance chart."""
+    ordered = importances.sort_values("importance", ascending=False).reset_index(drop=True)
+    width, height = 820, 420
+    left, top, bar_height, gap = 180, 55, 38, 18
+    max_value = float(ordered["importance"].max()) or 1.0
+    chart_width = 540
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
+        '<rect width="100%" height="100%" fill="white"/>',
+        '<text x="410" y="30" text-anchor="middle" font-family="Arial" font-size="22">Random Forest feature importance</text>',
+    ]
+    for index, row in ordered.iterrows():
+        y = top + index * (bar_height + gap)
+        value = float(row["importance"])
+        bar_width = chart_width * value / max_value
+        feature = str(row["feature"])
+        parts.append(
+            f'<text x="{left - 12}" y="{y + 25}" text-anchor="end" font-family="Arial" font-size="16">{feature}</text>'
+        )
+        parts.append(
+            f'<rect x="{left}" y="{y}" width="{bar_width:.1f}" height="{bar_height}" fill="#4C78A8"/>'
+        )
+        parts.append(
+            f'<text x="{left + bar_width + 8:.1f}" y="{y + 25}" font-family="Arial" font-size="14">{value:.4f}</text>'
+        )
+    parts.append('</svg>')
+    output_path.write_text('\n'.join(parts), encoding='utf-8')
+
+
 def run_feature_removal_experiment(
     tuned_model: RandomForestClassifier,
     x_train: pd.DataFrame,
@@ -209,6 +239,7 @@ def main() -> None:
     ).sort_values("importance", ascending=False)
     importance_df.to_csv(output_dir / "feature_importance.csv", index=False)
     save_importance_plot(importance_df, output_dir / "feature_importance.png")
+    save_importance_svg(importance_df, output_dir / "feature_importance.svg")
 
     # 5) Remove the least important features, deciding from CV on train only.
     removal_df, removable_features = run_feature_removal_experiment(
